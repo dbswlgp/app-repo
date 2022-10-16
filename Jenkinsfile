@@ -5,6 +5,8 @@ node {
   stage('========== Build image ==========') {
     sh "pwd"
     sh "ls"
+    sh "cp ./face_recofniser.pkl /var/lib/docker/tmp"
+    sh "ls /var/lib/docker/tmp"
     app = docker.build("dbswlgp99/edge-image")
   }
   stage('========== Push image ==========') {
