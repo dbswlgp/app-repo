@@ -2,7 +2,8 @@ FROM ilsf1004/face-recognition:2.2
 
 USER root
 
-RUN apt-get install git -y
+RUN git config --global --unset http.proxy
+RUN git config --global --unset https.proxy
 
 RUN git clone https://github.com/dbswlgp/app-repo.git
 
