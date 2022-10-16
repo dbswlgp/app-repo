@@ -5,7 +5,7 @@ node {
   stage('========== Build image ==========') {
     sh "pwd"
     sh "ls"
-    app = docker.pull("dbswlgp99/edge-image:63")
+    app = docker.image("dbswlgp99/edge-image:63")
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
