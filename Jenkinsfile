@@ -9,7 +9,7 @@ node {
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
       docker.image("dbswlgp99/edge-image:63").pull()
-      docker.image().tag("dbswlgp99/edge-image:63", "dbswlgp99/edge-image:${env.BUILD_NUMBER}")
+      docker.image("dbswlgp99/edge-image:63").tag("dbswlgp99/edge-image:${env.BUILD_NUMBER}")
     }
   }
   stage('========== Manifest update ==========') {
