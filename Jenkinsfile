@@ -3,6 +3,8 @@ node {
     checkout scm
   }
   stage('========== Build image ==========') {
+    sh "pwd"
+    sh "ls"
     app = docker.build("dbswlgp99/edge-image")
   }
   stage('========== Push image ==========') {
