@@ -1,6 +1,10 @@
 FROM ilsf1004/face-recognition:2.2
 
-COPY ./face_recogniser.pkl /facenet/face-recognition/model
+USER root
+
+RUN git clone https://github.com/dbswlgp/app-repo.git
+
+COPY app-repo/face_recogniser.pkl /facenet/face-recognition/model
 
 WORKDIR /facenet/face-recognition
 

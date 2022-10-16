@@ -3,7 +3,7 @@ node {
     checkout scm
   }
   stage('========== Build image ==========') {
-    app = docker.build("dbswlgp99/jenkins-nginx")
+    app = docker.build("dbswlgp99/edge-image")
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
@@ -15,8 +15,8 @@ node {
     git branch: "main",
     credentialsId: 'github_access_token',
     url: 'https://github.com/dbswlgp/deploy-repo.git'
-    sh "sed -i 's/jenkins-nginx:.*/jenkins-nginx:${env.BUILD_NUMBER}/g' nginx-deploy.yaml"
-    sh "git add nginx-deploy.yaml"
+    sh "sed -i 's/edge-image:.*/edge-image:${env.BUILD_NUMBER}/g' model.yaml"
+    sh "git add model.yaml"
     sh "git commit -m '${env.BUILD_NUMBER} image version'"
     withCredentials([gitUsernamePassword(credentialsId: 'github_access_token', gitToolName: 'git-tool')]) {
       sh "git remote set-url origin https://github.com/dbswlgp/deploy-repo"
@@ -24,3 +24,4 @@ node {
     }
   }
 }
+
