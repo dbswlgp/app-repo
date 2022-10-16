@@ -12,6 +12,7 @@ node {
       sh "docker tag dbswlgp99/edge-image:${env.BUILD_NUMBER}"
       sh "docker push dbswlgp99/edge-image:${env.BUILD_NUMBER}"
     }
+  }
   stage('========== Manifest update ==========') {
     git branch: "main",
     credentialsId: 'github_access_token',
