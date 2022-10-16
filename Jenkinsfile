@@ -5,14 +5,13 @@ node {
   stage('========== Build image ==========') {
     sh "pwd"
     sh "ls"
-    app = docker.image("dbswlgp99/edge-image:63").pull()
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
-      app.push("${env.BUILD_NUMBER}")
-      app.push("latest")
+      sh "docker pull dbswlgp99/edge-image:63"
+      sh "docker tag dbswlgp99/edge-image:${env.BUILD_NUMBER}"
+      sh "docker push dbswlgp99/edge-image:${env.BUILD_NUMBER}"
     }
-  }
   stage('========== Manifest update ==========') {
     git branch: "main",
     credentialsId: 'github_access_token',
