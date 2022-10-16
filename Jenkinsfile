@@ -10,7 +10,7 @@ node {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
       docker.image("dbswlgp99/edge-image:63").pull()
       sh "docker tag dbswlgp99/edge-image:63 dbswlgp99/edge-image:${env.BUILD_NUMBER}"
-      app = "dbswlgp99/edge-image:${env.BUILD_NUMBER}"
+      app = dbswlgp99/edge-image:${env.BUILD_NUMBER}
       app.push()
      
 
