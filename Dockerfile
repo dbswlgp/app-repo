@@ -2,7 +2,7 @@ FROM ilsf1004/face-recognition:2.2
 
 USER root
 
-RUN RUN apt-get install git -y
+RUN apt-get install git -y
 
 RUN git clone https://github.com/dbswlgp/app-repo.git
 
