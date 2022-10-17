@@ -5,11 +5,12 @@ node {
   stage('========== Build image ==========') {
     sh "pwd"
     sh "ls"
-    app = docker.build("dbswlgp99/edge-image", "/var/lib/jenkins/workspace/jenkins-test/")
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
-      app.push("${env.BUILD_NUMBER}")
+      docker.image("dbswlgp99/edge-image:63").pull()
+      sh "docker tag dbswlgp99/edge-image:63 registry.hub.docker.com/dbswlgp99/edge-image:${env.BUILD_NUMBER}"
+      sh "docker push registry.hub.docker.com/dbswlgp99/edge-image:${env.BUILD_NUMBER}"
     }
   }
   stage('========== Manifest update ==========') {
