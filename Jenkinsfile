@@ -8,8 +8,8 @@ node {
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
-      docker.image("dbswlgp99/edge-image:63").pull()
-      sh "docker tag dbswlgp99/edge-image:63 registry.hub.docker.com/dbswlgp99/edge-image:${env.BUILD_NUMBER}"
+      sh "docker pull dbswlgp99/edge-image:latest"
+      sh "docker tag dbswlgp99/edge-image:latest registry.hub.docker.com/dbswlgp99/edge-image:${env.BUILD_NUMBER}"
       sh "docker push registry.hub.docker.com/dbswlgp99/edge-image:${env.BUILD_NUMBER}"
     }
   }
