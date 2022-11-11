@@ -3,8 +3,7 @@ node {
     checkout scm
   }
   stage('========== Build image ==========') {
-    sh "pwd"
-    sh "ls"
+    sh "sleep 60"
   }
   stage('========== Push image ==========') {
     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_dbswlgp99') {
